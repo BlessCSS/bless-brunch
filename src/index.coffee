@@ -1,6 +1,7 @@
 bless = require 'bless'
 sysPath = require 'path'
 fs = require 'fs'
+_ = require 'lodash'
 
 module.exports = class BlessCompiler
 	brunchPlugin: yes
@@ -14,7 +15,8 @@ module.exports = class BlessCompiler
 			force: no
 			imports: yes
 
-		@options = @config?.plugins?.bless ? defaultOptions
+		@options = @config?.plugins?.bless ? {}
+		@options = _.merge defaultOptions, @options
 
 	minify: (data, path, callback) =>
 		parser = new bless.Parser({output: path, options: @options})
