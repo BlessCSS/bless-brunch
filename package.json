@@ -6,7 +6,7 @@
 	"license": "BSD",
 	"repository": {
 		"type": "git",
-		"url": "http://git.viaresponse.com/bless-brunch-plugin.git"
+		"url": "https://github.com/ThomasConner/bless-brunch.git"
 	},
 	"keywords": [
 		"bless-brunch",
