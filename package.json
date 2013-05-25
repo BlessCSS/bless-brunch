@@ -1,0 +1,24 @@
+{
+	"name": "bless-brunch",
+	"version": "0.0.1",
+	"description": "Adds bless css support to brunch.",
+	"author": "Via Response Technologies, Inc. (http://viaresponse.com)",
+	"license": "BSD",
+	"repository": "",
+	"keywords": [
+		"bless-brunch",
+		"bless"
+	],
+	"main": "./lib/index",
+	"scripts": {
+		"prepublish": "rm -rf lib && coffee --bare --output lib/ src/",
+		"test": "node_modules/.bin/mocha --compilers coffee:coffee-script --require test/common.js"
+	},
+	"dependencies": {
+		"bless": "3.0.2"
+	},
+	"devDependencies": {
+		"mocha": "1.10.0",
+		"chai": "1.6.0"
+	}
+}
