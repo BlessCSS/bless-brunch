@@ -1,6 +1,6 @@
 {
 	"name": "bless-brunch",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Adds bless css support to brunch.",
 	"author": "Via Response Technologies, Inc. (http://viaresponse.com)",
 	"license": "BSD",
