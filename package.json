@@ -1,9 +1,9 @@
 {
 	"name": "bless-brunch",
-	"version": "0.0.2",
+	"version": "1.6.0",
 	"description": "Adds bless css support to brunch.",
 	"author": "Via Response Technologies, Inc. (http://viaresponse.com)",
-	"license": "BSD",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/ThomasConner/bless-brunch.git"
