@@ -1,5 +1,5 @@
 ## Important:
-This plugin can not be used with clean-css-brunch. Clean-css-brunch will concatenate all css files into one css file which will undo the results from bless-brunch.
+This plugin can not be used with clean-css-brunch. Clean-css-brunch will concatenate all css files into one css file which will undo the results from bless-brunch. Please visit [blesscss.com](http://blesscss.com) for more information.
 
 ## bless-brunch
 Adds Bless support to [brunch](http://brunch.io).
