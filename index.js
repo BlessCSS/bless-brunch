@@ -1,8 +1,10 @@
 const bless = require('bless');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const assign = require('lodash/assign');
 const isArray = require('lodash/isArray');
+const isString = require('lodash/isString');
+const isFunction = require('lodash/isFunction');
 
 class BlessCompiler {
   get brunchPlugin() {
@@ -17,11 +19,16 @@ class BlessCompiler {
     const plugins = config.plugins || {};
     const options = plugins.bless || {};
     this.options = assign({
-      sourceMaps: false
+      cacheBuster: true,
+      cleanup: true,
+      compress: true,
+      force: false,
+      imports: true,
+      outputDirectory: undefined
     }, options);
   }
 
-  onCompile(generatedFiles = []) {
+  onCompile(generatedFiles = [], done) {
     if (isArray(generatedFiles) === false) {
       generatedFiles = [generatedFiles];
     }
@@ -31,10 +38,22 @@ class BlessCompiler {
     });
 
     files.forEach((file) => {
-      const content = fs.readFileSync(file.path).toString();
-      const parsedContent = bless.chunk(content, this.options);
-      parsedContent.data.forEach((content, index) => {
-        fs.writeFileSync(path.resolve(path.dirname(file.path), `${path.basename(file.path, path.extname(file.path))}-${index}.${path.extname(file.path)}`), content);
+      const content = fs.readFileSync(file.path, 'utf-8').toString();
+      const parser = new bless.Parser({ output: file.path, options: this.options });
+      parser.parse(content, (error, files, numSelectors) => {
+        if (error) {
+          throw error;
+        }
+
+        files.forEach((file) => {
+          const outputDirectory = this.options.outputDirectory || path.dirname(file.filename);
+          fs.ensureDirSync(outputDirectory);
+          fs.writeFileSync(path.resolve(outputDirectory, path.basename(file.filename)), file.content, 'utf8');
+        });
+
+        if (isFunction(done)) {
+          done();
+        }
       });
     });
   }
