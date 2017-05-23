@@ -9,7 +9,7 @@ describe('Plugin', function() {
       plugins: {
         bless: {
           cacheBuster: false,
-          outputDirectory: path.resolve(__dirname, './fixtures/output')
+          outputDirectory: './test/fixtures/output'
         }
       }
     });
